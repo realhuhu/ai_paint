@@ -92,9 +92,6 @@ class KDiffusionSampler:
         self.eta = eta
 
         extra_params_kwargs = {}
-        for param_name in self.extra_params:
-            if hasattr(p, param_name) and param_name in inspect.signature(self.func).parameters:
-                extra_params_kwargs[param_name] = getattr(p, param_name)
 
         if 'eta' in inspect.signature(self.func).parameters:
             extra_params_kwargs['eta'] = self.eta
