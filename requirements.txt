@@ -1,0 +1,14 @@
+transformers==4.19.2
+basicsr==1.4.2
+numpy==1.23.3
+Pillow==9.2.0
+torch
+omegaconf==2.2.3
+pytorch_lightning==1.7.6
+einops==0.4.1
+jsonmerge==1.8.0
+clean-fid==0.1.29
+resize-right==0.0.2
+torchdiffeq==0.2.3
+kornia==0.6.7
+lark==1.1.2
