@@ -1,0 +1,7 @@
+*.pyc
+__pycache__
+.idea/
+weights/facelib/*
+!weights/facelib/readme.txt
+weights/models/*
+!weights/models/readme.txt
