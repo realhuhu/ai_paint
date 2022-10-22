@@ -1,6 +1,7 @@
 import torch
 import importlib
 from omegaconf import OmegaConf
+from hijack import hijack
 
 
 def get_state_dict_from_checkpoint(pl_sd):
@@ -40,9 +41,10 @@ def load_model_weights(model, checkpoint_file, vae_file):
     model.first_stage_model.load_state_dict(vae_dict)
 
 
-def load_novelAI(checkpoint_file, vae_file, config):
+def load_novelAI(checkpoint_file, vae_file, hypernetwork_file, config, CLIP_stop=2):
     sd_config = OmegaConf.load(config)
     sd_model = instantiate_from_config(sd_config.model)
     load_model_weights(sd_model, checkpoint_file, vae_file)
     sd_model.to("cuda")
+    hijack(sd_model, hypernetwork_file, CLIP_stop)
     return sd_model
