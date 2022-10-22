@@ -1,0 +1,2 @@
+novelAI的hypernetwork模型放在这
+不是强制要求，放哪都可以，只要你加载模型的时候指定对hypernetwork文件的路径就行了
