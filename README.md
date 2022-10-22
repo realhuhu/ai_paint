@@ -9,14 +9,18 @@ from utils import load_novelAI,KDiffusionSampler,txt2img,img2img,FaceRestorerCod
 #### 1.novelAI模型
 
 ```python
-sd_model=load_novelAI(checkpoint_file,vae_file,config)
+sd_model=load_novelAI(checkpoint_file,vae_file,hypernetwork_file,config,CLIP_stop)
 ```
 
 checkpoint_file：ckpt文件的路径
 
 vae_file：.vae.pt文件的路径
 
+hypernetwork_file:hypernetwork文件的路径，不想使用hypernetwork就设为None
+
 config：config文件的路径，默认为"./config.yaml"
+
+CLIP_stop：CLIP_stop的层，默认为2
 
 这一步会有warning，不用管
 
@@ -35,6 +39,8 @@ sd_model：之前生成的novelAI模型
 ```python
 face_restoration=FaceRestorerCodeFormer(face_restoration_file)
 ```
+
+目前人脸修复可能影响清晰度，酌情使用
 
 face_restoration_file：codeformer.pth文件的位置，建议放在./weights/facelib/codeformer.pth，[下载链接](https://github.com/sczhou/CodeFormer/releases/download/v0.1.0/codeformer.pth)
 
@@ -67,7 +73,7 @@ txt2img(
         seed=None,# 种子，一样的话生成结果基本相同
         subseed=None,# 副种子，轻微影响结果
         face_restoration: FaceRestorerCodeFormer = None,# 人脸修复模型
-        face_restoration_weight=0.5# 人脸修复强度
+        face_restoration_weight=1# 人脸修复强度
 )
 ```
 
@@ -95,7 +101,7 @@ txt2img(
         seed=None,# 种子，一样的话生成结果基本相同
         subseed=None,# 副种子，轻微影响结果
         face_restoration: FaceRestorerCodeFormer = None,# 人脸修复模型
-        face_restoration_weight=0.5# 人脸修复强度
+        face_restoration_weight=1# 人脸修复强度
 )
 ```
 

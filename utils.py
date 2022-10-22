@@ -93,7 +93,7 @@ def txt2img(
         seed=None,
         subseed=None,
         face_restoration: FaceRestorerCodeFormer = None,
-        face_restoration_weight=0.5
+        face_restoration_weight=1
 ):
     with torch.no_grad(), sd_model.ema_scope():
         with torch.autocast("cuda"):
@@ -154,7 +154,7 @@ def img2img(
         seed=None,
         subseed=None,
         face_restoration: FaceRestorerCodeFormer = None,
-        face_restoration_weight=0.5
+        face_restoration_weight=1
 ):
     img = resize_image(resize_mode, img.convert("RGB"), width, height)
     img = np.array(img).astype(np.float16) / 255.0
